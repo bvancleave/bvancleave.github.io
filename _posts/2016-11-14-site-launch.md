@@ -18,7 +18,7 @@ A few months ago I started tinkering with Spring Boot and MVC, and I instantly g
 ### University Team Software Engineering Team Project (2012)
 Our group consisted of seven students; and each student had a particular role as well as coding responsibilities relating to the project.  For our group assignment, after much deliberation, we decided to use Servlets and JSP to construct our site to mimic an online airline reservation system.  The mistake I made dismissing it too fast without researching it.  Most of the students in my group did not have experience with web development, so they deferred many decisions to me - I was the Project Manager as well as Lead Developer on the project.  I based my decision on my prior experiences with Spring, but I didn't realize how the ecosystem has changed through the years.  When we were designing our system, I felt that we were re-inventing the wheel many times.  While this provided us with valuable experience, this cost us time and didn't allow us to benefit from existing, more mature frameworks, who experienced many of the challenges that we encountered throughout our project.
 
-#### Conversion
+#### Migration
 First, I had to create an Index Controller, and I had to configure Spring to render the JSP / JSTL pages.  In the application.properties file, I stipulated the location of the Views - in this case, JSP.
 
 ```
