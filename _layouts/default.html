@@ -4,6 +4,7 @@
 			<title>{{ page.title }}</title>
 			<!-- link to main stylesheet -->
 			<link rel="stylesheet" type="text/css" href="/css/main.css">
+			<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 		</head>
 		<body>
 			<nav>
@@ -20,8 +21,20 @@
 			</div><!-- /.container -->
 			<footer>
 	    		<ul>
-	        		<li><a href="mailto:bvancleave@yahoo.com">email</a></li>
-	        		<li><a href="https://github.com/bvancleave">github.com/bvancleave</a></li>
+	        		<li><a href="mailto:{{ site.email }}"> email</a></li>
+
+{% if site.github %}
+	        		<li><a href="https://github.com/{{ site.github }}"><i class="fa fa-github"></i> GitHub</a></li>
+{% endif %}
+
+{% if site.twitter %}
+	        		<li><a href="https://twitter.com/{{ site.twitter }}"><i class="fa fa-twitter"></i> Twitter</a></li>
+{% endif %}
+
+{% if site.linkedin %}
+	        		<li><a href="https://linkedin.com/in/{{ site.linkedin }}"><i class="fa fa-linkedin"></i> LinkedIn</a></li>
+{% endif %}
+
 				</ul>
 			</footer>
 		</body>
