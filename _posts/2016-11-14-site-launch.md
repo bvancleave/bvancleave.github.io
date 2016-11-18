@@ -87,6 +87,7 @@ public class AvailableFlights {
 }
 ```
 Here is an example of one of the Servlets:
+
 ```java
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -161,7 +162,9 @@ Here is an example of one of the Servlets:
 		}
 	}
 ```
+
 And here is the conversion:
+
 ```java
 	@RequestMapping("/flights")
 	public String checkAvailableFlights(@Valid @ModelAttribute("availableFlights") AvailableFlights availableFlights,
@@ -178,7 +181,9 @@ And here is the conversion:
 		return "availableFlights";
 	}
 ```
+
 One of the features I enjoyed was validation.  I was able to let Spring handle validation for me - which reduced many lines of code.  When needed, I created Validators for readability, maintainability, and testing which produced lean controllers that were not bloated with source code.
+
 ```java
 @Documented
 @Constraint(validatedBy = BagLimitValidator.class)
@@ -208,7 +213,9 @@ public class BagLimitValidator implements ConstraintValidator<BagLimit, BookingI
 	}
 }
 ```
+
 While converting the Servlets, I had to re-implement many of the services we had.  I opted to use [Spring Data JPA](http://projects.spring.io/spring-data-jpa/) module, and it was a very convenient and easy module to use.  I was able to reduce hundreds of lines of boilerplate code as well as improving the readability and testing of the services.
+
 ```java
 @Repository
 public interface FlightRepository extends CrudRepository<Flight, Long> {
@@ -246,7 +253,9 @@ public class FlightService {
 	}
 }
 ```
+
 I will not bore you with all of the details of the View, but I did not have difficulty with the transition.  Here is a simplified example:
+
 ```
 <form:form commandName="availableFlights" method="post" action="flights">
     <form:select path="departure">
@@ -266,6 +275,7 @@ I will not bore you with all of the details of the View, but I did not have diff
     <INPUT id="u13" type="submit" class="u13" value="Search Flights" tabindex="4" >
 </form:form>
 ```
+
 ## Improvements
 Here are a few areas of improvement for my project.
 
@@ -277,6 +287,7 @@ I want to convert JSP to [Thymeleaf](http://www.thymeleaf.org).  I already creat
 
 ### Bootstrap
 [Bootstrap](http://getbootstrap.com/) allows me to rapidly develop the front-end of web project.  I have basic knowledge of css and javascript, and with this framework, I am more productive and allows me to focus on different areas of the system.  I am using Bootstrap in my Heartstone project.  I am using [WebJars](http://www.webjars.org) versions of Bootstrap in my pom.xml file.
+
 ```
 	<dependency>
 		<groupId>org.webjars</groupId>
@@ -284,5 +295,6 @@ I want to convert JSP to [Thymeleaf](http://www.thymeleaf.org).  I already creat
 		<version>3.3.7-1</version>
 	</dependency>
 ```
+
 ## Conclusion
 So, with this site, I am trying new frameworks and applications to spearhead my growth using [Jekyll](http://jekyllrb.com) and Markdown to gather my thoughts and showcase my journey to the world.
