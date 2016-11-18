@@ -3,6 +3,11 @@ email : bvancleave@yahoo.com
 github : bvancleave
 twitter : b_van_cleave
 linkedin : bradley-van-cleave-9710741
+
 markdown : kramdown
-theme : minima
+
+kramdown :
+    input : GFM
+    sybtax_highligher : rouge
+
 permalink: /blog/:year/:month/:day/:title

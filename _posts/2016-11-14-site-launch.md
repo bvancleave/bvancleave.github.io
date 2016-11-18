@@ -21,7 +21,7 @@ Our group consisted of seven students; and each student had a particular role as
 #### Conversion
 First, I had to create an Index Controller, and I had to configure Spring to render the JSP / JSTL pages.  In the application.properties file, I stipulated the location of the Views - in this case, JSP.
 
-```java
+``` java
 @Controller
 public class IndexController {
 
@@ -40,9 +40,10 @@ public class IndexController {
 spring.mvc.view.prefix: /WEB-INF/jsp/
 spring.mvc.view.suffix: .jsp
 ```
+
 In our project, we had many servlets, so I began with converting each servlet into a Controller.  During the process, I had to create some form beans.  Unfortunately, I did not have this POJO created in the original project.
 
-```java
+``` java
 public class AvailableFlights {
 
 		@NotNull
@@ -86,9 +87,10 @@ public class AvailableFlights {
 		}
 }
 ```
+
 Here is an example of one of the Servlets:
 
-```java
+``` java
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -165,7 +167,8 @@ Here is an example of one of the Servlets:
 
 And here is the conversion:
 
-```java
+
+``` java
 	@RequestMapping("/flights")
 	public String checkAvailableFlights(@Valid @ModelAttribute("availableFlights") AvailableFlights availableFlights,
 		BindingResult bindingResult, Model model) {
@@ -184,7 +187,7 @@ And here is the conversion:
 
 One of the features I enjoyed was validation.  I was able to let Spring handle validation for me - which reduced many lines of code.  When needed, I created Validators for readability, maintainability, and testing which produced lean controllers that were not bloated with source code.
 
-```java
+``` java
 @Documented
 @Constraint(validatedBy = BagLimitValidator.class)
 @Target( { ElementType.TYPE, ElementType.ANNOTATION_TYPE})
@@ -216,11 +219,14 @@ public class BagLimitValidator implements ConstraintValidator<BagLimit, BookingI
 
 While converting the Servlets, I had to re-implement many of the services we had.  I opted to use [Spring Data JPA](http://projects.spring.io/spring-data-jpa/) module, and it was a very convenient and easy module to use.  I was able to reduce hundreds of lines of boilerplate code as well as improving the readability and testing of the services.
 
-```java
+``` java
 @Repository
 public interface FlightRepository extends CrudRepository<Flight, Long> {
 
-	@Query(value = "SELECT * FROM flight WHERE departure = :departure AND destination = :destination AND CONVERT(departure_time,char) LIKE :departureTime%", nativeQuery = true)
+	@Query(value = "SELECT * FROM flight 
+		     WHERE departure = :departure 
+		     	   AND destination = :destination 
+			   AND CONVERT(departure_time,char) LIKE :departureTime%", nativeQuery = true)
 	List<Flight> findByDepartureAndDestinationAndDepartureTimeStartingWith( 
 			@Param("departure") String departure, 
 			@Param("destination") String destination, 
@@ -256,7 +262,7 @@ public class FlightService {
 
 I will not bore you with all of the details of the View, but I did not have difficulty with the transition.  Here is a simplified example:
 
-```
+``` html
 <form:form commandName="availableFlights" method="post" action="flights">
     <form:select path="departure">
 	    <form:option  value="Chicago" label="Chicago"/>
@@ -289,11 +295,11 @@ I want to convert JSP to [Thymeleaf](http://www.thymeleaf.org).  I already creat
 [Bootstrap](http://getbootstrap.com/) allows me to rapidly develop the front-end of web project.  I have basic knowledge of css and javascript, and with this framework, I am more productive and allows me to focus on different areas of the system.  I am using Bootstrap in my Heartstone project.  I am using [WebJars](http://www.webjars.org) versions of Bootstrap in my pom.xml file.
 
 ```
-	<dependency>
-		<groupId>org.webjars</groupId>
-		<artifactId>bootstrap</artifactId>
-		<version>3.3.7-1</version>
-	</dependency>
+<dependency>
+    <groupId>org.webjars</groupId>
+    <artifactId>bootstrap</artifactId>
+    <version>3.3.7-1</version>
+</dependency>
 ```
 
 ## Conclusion
